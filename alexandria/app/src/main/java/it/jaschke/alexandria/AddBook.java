@@ -75,10 +75,13 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 if(ean.length()==10 && !ean.startsWith("978")){
                     ean="978"+ean;
                 }
+                /*
                 if(ean.length()<13){
-                    Toast.makeText(getActivity() ,"Isbn Number is more than 13 numbers , Try Again!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity() ,"Isbn Number is less than 13 numbers , Try Again!",Toast.LENGTH_LONG).show();
                     return;
                 }
+                */
+
                 //Once we have an ISBN, start a book intent
                 Intent bookIntent = new Intent(getActivity(), BookService.class);
                 bookIntent.putExtra(BookService.EAN, ean);

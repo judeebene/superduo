@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:xliff="http://schemas.android.com/apk/res-auto" xmlns:x="http://schemas.android.com/apk/res/android">
+
+    <string name="app_name">scores de football</string>
+    <string name="hello_world">Bonjour le monde!</string>
+    <string name="action_settings">paramètres</string>
+
+    <string name="today">aujourd'hui</string>
+    <string name="yesterday">hier</string>
+    <string name="tomorrow">demain</string>
+    <string name="champions_league">UEFA Ligue des Champions</string>
+    <string name="bundesliga">Bundesliga</string>
+    <string name="premierleague">Première Ligue</string>
+    <string name="primeradivison">première Division</string>
+    <string name="seriaa">Serie A</string>
+    <string name="matchday_text">Le jour du match</string>
+    <string name="group_stage_text">Phases de groupe</string>
+    <string name="first_knockout_round">Huitièmes de finale</string>
+    <string name="quarter_final">quart De Finale</string>
+    <string name="semi_final">demi-Finale</string>
+    <string name="final_text">Finale</string>
+    <string name="share_text">partager</string>
+    <string name="about">sur</string>
+    <string name="title_activity_about">AboutActivity</string>
+    <string name="about_text">
+        Cette application se matches de football Score pour la Premier League , Seria A, Bundesliga , la Primera Division
+        et l'UEFA Champions League .
+        Toutes les données correspondances sont acquis à partir API gratuitement football-data.org
+       Tous les Logos de l'équipe sont acquis à partir de <x:liff>http://hdlogo.wordpress.com/ </x:liff>à demander l'autorisation de former le propriétaire .
+      La version originale de cette application a été créé par <x:liff> Yahia Khalid Ibn El Walid Ahmed</x:liff>, et une version modifiée est donnée aux étudiants dans le<x:liff>Udacity Android Nanodegree program.</x:liff>
+        Pour signaler des bugs ou suggestions ne pas hésiter à envoyer un mail à  <x:liff> y.k.ibnelwalid@gmail.com.</x:liff>
+
+     Durant la saison morte , de fausses données seront ajoutées à l'application .
+    </string>
+    <string name="widget_text">Ceci est un widget probablement.</string>
+
+    <string name="widget_subtitle"> Score actuel</string>
+    <string name="widget_subtitle_desc"> Score actuel Titre</string>
+    <string name="widget_imageview_desc">Football Widget Icône</string>
+    <string name="widget_title_desc"> Score Football app titre</string>
+    <string name="widget_listview_desc">Équipe de football de la liste et Scores</string>
+    <string name="football_widget"> Football Widget</string>
+    <string name="empty_result"> Aucun résultat trouvé</string>
+    <string name="empty_result_desc">Aucun résultat trouvé to Display</string>
+    <string name="league_textview_desc">Nom Ligue actuelle</string>
+    <string name="matchday_text_desc">Journée du Match</string>
+    <string name="share_button_desc"> Cliquez pour partager</string>
+    <string name="about_app_desc"> À propos App et développeur</string>
+    <string name="home_team_logo_desc">L'équipe d'accueil Logo</string>
+    <string name="away_team_logo_desc"> Loin Logo de l'équipe</string>
+    <string name="home_team_name"> Nom Home Team </string>
+    <string name="away_team_name">Loin Nom de l'équipe</string>
+    <string name="match_score_desc"> Match Score</string>
+    <string name="match_time_desc">temps</string>
+</resources>

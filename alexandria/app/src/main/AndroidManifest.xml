@@ -41,6 +41,9 @@
             android:name=".services.BookService"
             android:exported="false" >
         </service>
+        <activity android:name=".BookScanner"
+            android:label="@string/scan_book_title">
+        </activity>
     </application>
 
 </manifest>
