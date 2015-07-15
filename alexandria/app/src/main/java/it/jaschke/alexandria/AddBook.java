@@ -4,12 +4,16 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +30,7 @@ import it.jaschke.alexandria.services.DownloadImage;
 
 
 public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<Cursor> {
+    public String LOG_TAG = AddBook.class.getSimpleName() ;
     private static final String TAG = "INTENT_TO_SCAN_ACTIVITY";
     private EditText ean;
     private final int LOADER_ID = 1;
@@ -70,24 +75,41 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
 
             @Override
             public void afterTextChanged(Editable s) {
-                String ean =s.toString();
-                //catch isbn10 numbers
-                if(ean.length()==10 && !ean.startsWith("978")){
-                    ean="978"+ean;
-                }
-                /*
-                if(ean.length()<13){
-                    Toast.makeText(getActivity() ,"Isbn Number is less than 13 numbers , Try Again!",Toast.LENGTH_LONG).show();
-                    return;
-                }
-                */
 
-                //Once we have an ISBN, start a book intent
-                Intent bookIntent = new Intent(getActivity(), BookService.class);
-                bookIntent.putExtra(BookService.EAN, ean);
-                bookIntent.setAction(BookService.FETCH_BOOK);
-                getActivity().startService(bookIntent);
-                AddBook.this.restartLoader();
+                if (null != s) {
+                    String ean = s.toString();
+
+
+                    if (!TextUtils.isEmpty(ean)) {
+
+
+                        //catch isbn10 numbers
+                        if (ean.length() == 10 && !ean.startsWith("978")) {
+                            ean = "978" + ean;
+                        }
+
+                        //check to see is there is internet
+                        if(isNetworkAvailable(getActivity())) {
+
+
+                            //Once  we have internet Network and   ISBN, start a book intent
+                            Intent bookIntent = new Intent(getActivity(), BookService.class);
+                            bookIntent.putExtra(BookService.EAN, ean);
+                            bookIntent.setAction(BookService.FETCH_BOOK);
+                            getActivity().startService(bookIntent);
+                            AddBook.this.restartLoader();
+                        }
+                        else{
+                            Toast.makeText(getActivity(), "No Network Available ,Check your Internet Connection",Toast.LENGTH_LONG).show();
+                        }
+                    }
+                    else {
+                        Toast.makeText(getActivity() ," No Isbn number Entered,Type Isbn number to add a Book ",Toast.LENGTH_LONG).show();
+                        return;
+
+                    }
+                }
+
             }
         });
 
@@ -212,6 +234,16 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 ean.setText(data.getStringExtra("ean_code"));
             }
         }
+
+    }
+
+    public static Boolean isNetworkAvailable(Context c) {
+
+        ConnectivityManager cm = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+
+        return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
 
     }
 }
